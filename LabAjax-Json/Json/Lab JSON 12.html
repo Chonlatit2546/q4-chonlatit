@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>CS Shop</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link href="../../mcss.css" rel="stylesheet" type="text/css" />
+   <script>
+    async function getDataFromAPI() {
+        let response = await fetch('http://202.44.40.193/~aws/JSON/priv_hos.json')
+        let rawData = await response.text()
+        let objectData = JSON.parse(rawData)
+
+        let result = document.getElementById('result')
+
+
+        for (let i = 0; i < objectData.features.length; i++) {
+           console.log(objectData.features[i].properties.num_bed);
+           if(objectData.features[i].properties.num_bed >= 91){
+              let Large_hos = document.getElementsByClassName('Large')[0];
+
+              let content = 'ชื่อโรงบาล' + objectData.features[i].properties.name + "(" + objectData.features[i].properties.num_bed + " เตียง)";
+
+              let div = document.createElement('div');
+              div.innerHTML = content;
+              Large_hos.appendChild(div);
+           }
+           else if(objectData.features[i].properties.num_bed >= 31){
+              let Medium_hos = document.getElementsByClassName('Medium')[0];
+
+              let content = 'ชื่อโรงบาล' + objectData.features[i].properties.name + "(" + objectData.features[i].properties.num_bed + " เตียง)";
+
+              let div = document.createElement('div');
+              div.innerHTML = content;
+              Medium_hos.appendChild(div);
+           }
+           else{
+              let Small_hos = document.getElementsByClassName('Small')[0];
+
+              let content = 'ชื่อโรงบาล' + objectData.features[i].properties.name + "(" + objectData.features[i].properties.num_bed + " เตียง)";
+
+              let div = document.createElement('div');
+              div.innerHTML = content;
+              Small_hos.appendChild(div);
+           }
+
+            
+        }
+    }
+
+    getDataFromAPI() 
+</script>
+</head>
+
+<body>
+
+   <header>
+      <div class="logo">
+         <img src="../../cslogo.jpg" width="200" alt="Site Logo">
+      </div>
+      <div class="search">
+         <form>
+            <input type="search" placeholder="Search the site...">
+            <button>Search</button>
+         </form>
+      </div>
+   </header>
+
+   <div class="mobile_bar">
+      <a href="#"><img src="responsive-demo-home.gif" alt="Home"></a>
+      <a href="#" onClick='toggle_visibility("menu"); return false;'><img src="responsive-demo-menu.gif" alt="Menu"></a>
+   </div>
+
+   <main>
+      <article>
+        <h1>โรงพยาบาลเอกชนใน กทม.</h1>
+
+        <div class="Large"><h2>โรงพยาบาลขนาดใหญ่</h2></div>
+        <div class="Medium"><h2>โรงพยาบาลขนาดกลาง</h2></div>
+        <div class="Small"><h2>โรงพยาบาลขนาดเล็ก</h2></div>
+        
+      </article>
+      <nav id="menu">
+         <h2>Navigation</h2>
+         <ul class="menu">
+            <li class="dead"><a href="../../index.php">Home</a></li>
+            <li><a href="../../Product/deleteProduct.php">Delete Product</a></li>
+            <li><a href="../../Product/addProduct.php">Add Product</a></li>
+            <li><a href="../../Product/editProduct.php">Edit Product</a></li>
+            <li><a href="../../Member/member.php">Member</a></li>
+            <li><a href="../../Member/deleteMember.php">Delete Member</a></li>
+            <li><a href="../../Member/addMember.php">Add Member</a></li>
+            <li><a href="../../Member/editMember.php">Edit Member</a></li>
+            <li><a href="../../Order/user-home.php">Order</a></li>
+            <li><a href="../../Lab7/Lab7.php">lab7</a></li>
+            <li><a href="../../Lab8-9/mpage1.php">Lab8-9 workshop1</a></li>
+            <li><a href="../../Lab8-9/mpage2.php">Lab8-9 workshop2</a></li>
+            <li><a href="../../Lab8-9/mpage3.php">Lab8-9 workshop3</a></li>
+            <li><a href="../../Lab8-9/mpage4.php">Lab8-9 workshop4</a></li>
+            <li><a href="../../Lab8-9/mpage5.php">Lab8-9 workshop5</a></li>
+            <li><a href="../../Lab8-9/mpage6.php">Lab8-9 workshop6</a></li>
+            <li><a href="../../Lab8-9/mpage7.php">Lab8-9 workshop7</a></li>
+            <li><a href="../../Lab8-9/mpage9.php">Lab8-9 workshop9</a></li>
+            <li><a href="../../LabAjax-Json/ajax/Lab1/register/form.html">ajax lab1</a></li>
+            <li><a href="../../LabAjax-Json/ajax/Lab2/searchMember.html">ajax lab2</a></li>
+            <li><a href="../../LabAjax-Json/Json/Lab JSON 12.html">Json lab</a></li>
+         </ul>
+      </nav>
+      <aside>
+         <h2>Aside</h2>
+         <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit libero sit amet nunc ultricies, eu feugiat diam placerat. Phasellus tincidunt nisi et lectus pulvinar, quis tincidunt lacus viverra. Phasellus in aliquet massa. Integer iaculis massa id dolor venenatis scelerisque.
+            <br><br>
+         </p>
+      </aside>
+   </main>
+   <footer>
+      <a href="#">Sitemap</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+   </footer>
+</body>
+
+</html>

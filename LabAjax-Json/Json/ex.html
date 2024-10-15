@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script>
+      async function getDataFromAPI() {
+        let response = await fetch(
+          "http://202.44.40.193/~aws/JSON/priv_hos.json"
+        );
+        let rawData = await response.text();
+        let objectData = JSON.parse(rawData);
+
+        let result = document.getElementById("result");
+
+        for (let i = 0; i < objectData.features.length; i++) {
+          let content =
+            "ชื่อโรงบาล" +
+            objectData.features[i].properties.name +
+            "(" +
+            objectData.features[i].properties.num_bed +
+            " เตียง)";
+
+          let li = document.createElement("li");
+          li.innerHTML = content;
+          result.appendChild(li);
+        }
+      }
+
+      getDataFromAPI();
+    </script>
+  </head>
+
+  <body>
+    <h1>โรงพยาบาลเอกชนใน กทม.</h1>
+
+    <ul id="result"></ul>
+  </body>
+</html>
